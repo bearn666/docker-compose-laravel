@@ -34,3 +34,8 @@ By default, whenever you bring down the docker-compose network, your MySQL data 
 volumes:
   - ./mysql:/var/lib/mysql
 ```
+## Permission problems on Linux
+- need to add this (`user: 1000:1000`) to the php and artisan containers
+- added the user option (-u --user) passing the host user uid:gid. For example:
+  1. docker-compose run --rm --user `id -u`:`id -g` artisan make:controller ...
+  2. docker-compose run --rm --user `id -u`:`id -g` composer create-project laravel/laravel 
